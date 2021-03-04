@@ -10,9 +10,9 @@ This project was created with the intent of pairing a pet with a new home. Petfu
 
 ## Have a look :)
 
-![AdoptionPage](https://user-images.githubusercontent.com/72029209/110018572-6b106380-7cf5-11eb-8013-1ab4d27401d8.jpg)
-![LandingPage](https://user-images.githubusercontent.com/72029209/110018573-6ba8fa00-7cf5-11eb-8a54-dac5283a6634.jpg)
-![FeedbackPage](https://user-images.githubusercontent.com/72029209/110018576-6c419080-7cf5-11eb-9e54-1a8e7b4f09f3.jpg)
+<img src="https://user-images.githubusercontent.com/72029209/110018572-6b106380-7cf5-11eb-8013-1ab4d27401d8.jpg" width="200" />
+<img src="https://user-images.githubusercontent.com/72029209/110018573-6ba8fa00-7cf5-11eb-8a54-dac5283a6634.jpg" width="200" />
+<img src="https://user-images.githubusercontent.com/72029209/110018576-6c419080-7cf5-11eb-9e54-1a8e7b4f09f3.jpg" width="200" />
 
 ### Server Repo:
 
