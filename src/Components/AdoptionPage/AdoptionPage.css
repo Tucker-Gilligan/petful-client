@@ -1,0 +1,5 @@
+.cat__dog {
+  display: flex;
+  justify-content: space-evenly;
+  border: solid 1px;
+}
