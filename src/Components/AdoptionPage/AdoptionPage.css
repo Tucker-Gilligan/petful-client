@@ -49,6 +49,11 @@
   font-size: 100%;
 }
 
+.congratulations {
+  text-align: center;
+  font-size: 200%;
+  color: green;
+}
 @media all and (min-width: 900px) {
   .cat__dog {
     flex-direction: row;

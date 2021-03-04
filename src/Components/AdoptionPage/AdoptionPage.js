@@ -114,8 +114,7 @@ class AdoptionPage extends React.Component {
   handleAdoptDogButton = e => {
     e.preventDefault();
     this.context.setFeedback(
-      `Congratulations ${this.context.people[0]}!! ${this.context.dogs[0].name}{' '}
-        can't wait to meet you!`
+      `Congratulations ${this.context.people[0]}!! ${this.context.dogs[0].name} can't wait to meet you!`
     );
 
     this.context.adoptDog();
@@ -130,8 +129,7 @@ class AdoptionPage extends React.Component {
     this.context.adoptCat();
 
     this.context.setFeedback(
-      `Congratulations ${this.context.people[0]}!! ${this.context.cats[0].name}
-          can't wait to meet you!`
+      `Congratulations ${this.context.people[0]}!! ${this.context.cats[0].name} can't wait to meet you!`
     );
 
     setTimeout(() => {
@@ -174,7 +172,7 @@ class AdoptionPage extends React.Component {
         {this.context.feedback === '' ? (
           <div className="cats_and_dogs">{this.renderCatsAndDogs()}</div>
         ) : (
-          <h3>{this.context.feedback}</h3>
+          <h3 className="congratulations">{this.context.feedback}</h3>
         )}
       </div>
     );
