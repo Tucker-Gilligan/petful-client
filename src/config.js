@@ -1,6 +1,5 @@
-const baseUrl = 
-    process.env.baseUrl ||
-    'http://localhost:8080/api'
+const config = {
+  API_ENDPOINT: 'https://fast-escarpment-36293.herokuapp.com/api',
+};
 
-
-export default baseUrl;
+export default config;

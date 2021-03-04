@@ -1,4 +1,5 @@
-import baseUrl from './config';
+import config from './config';
+const baseUrl = `${config.API_ENDPOINT}`;
 
 const ApiService = {
   getCat() {
