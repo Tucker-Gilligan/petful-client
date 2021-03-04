@@ -5,7 +5,9 @@ function Nav() {
       <Link className="nav__title" to="/">
         Petful FIFO
       </Link>
-      <Link to="/adopt">Adopt A Pet</Link>
+      <Link to="/adopt" className="nav__link">
+        Adopt A Pet
+      </Link>
     </nav>
   );
 }

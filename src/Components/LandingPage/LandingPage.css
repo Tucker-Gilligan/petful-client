@@ -1,0 +1,11 @@
+.landing__page {
+  font-size: 140%;
+  padding: 0.5rem;
+}
+
+@media all and (min-width: 900px) {
+  .landing__page {
+    padding: 3rem;
+    font-size: 180%;
+  }
+}

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import './LandingPage.css';
+
 function LandingPage() {
   return (
     <div className="landing__page">
@@ -11,7 +13,7 @@ function LandingPage() {
       <p>Don't worry, you'll always be able to see your place in line:) </p>
       <p>Start the adoption process now, and leave with a new furry friend:)</p>
       <Link to="/adopt">
-        <button>Start</button>
+        <button className="petful__button">Start</button>
       </Link>
     </div>
   );

@@ -60,7 +60,7 @@ class AdoptionPage extends React.Component {
           {this.renderPet(this.context.dogs[0], 'Dog')}
 
           <button
-            className="adopt-button"
+            className="petful__button"
             onClick={this.handleAdoptDogButton}
             type="button"
             disabled={this.context.people[0] !== this.name}
@@ -71,7 +71,7 @@ class AdoptionPage extends React.Component {
         <div className="cat__container">
           {this.renderPet(this.context.cats[0], 'Cat')}
           <button
-            className="adopt-button"
+            className="petful__button"
             onClick={this.handleAdoptCatButton}
             type="button"
             disabled={this.context.people[0] !== this.name}
@@ -79,8 +79,6 @@ class AdoptionPage extends React.Component {
             ADOPT CAT!
           </button>
         </div>
-        <br />
-        <br />
       </div>
     );
   }
@@ -115,8 +113,6 @@ class AdoptionPage extends React.Component {
   // Handles message and button when user clicks to adopt a dog
   handleAdoptDogButton = e => {
     e.preventDefault();
-    console.log(this.context.dogs[0]);
-    console.log(this.context.dogs[0].name);
     this.context.setFeedback(
       `Congratulations ${this.context.people[0]}!! ${this.context.dogs[0].name}{' '}
         can't wait to meet you!`
@@ -150,32 +146,36 @@ class AdoptionPage extends React.Component {
   render() {
     this.firstInLine();
     return (
-      <div>
-        {this.context.feedback === '' ? (
-          <div className="cats_and_dogs">{this.renderCatsAndDogs()}</div>
-        ) : (
-          <h3>{this.context.feedback}</h3>
-        )}
-
-        <fieldset className="name-list-style">
+      <div className="adoption__page">
+        <fieldset className="name__field">
           <h3>Add Name to List: </h3>
-          <form onSubmit={this.handleAddPerson}>
-            <label htmlFor="fullName">Name: </label>
+          <form onSubmit={this.handleAddPerson} className="people__queue__form">
+            <label htmlFor="user__name" className="user__name__label">
+              Name:{' '}
+            </label>
             <input
-              name="fullName"
+              name="user__name"
+              className="user__name"
               value={this.state.name}
               onChange={this.handleOnChange}
               placeholder="Enter your name"
               required
             ></input>
-            <button type="submit">Add Name</button>
+            <button type="submit" className="submit__button">
+              Add Name
+            </button>
           </form>
-          <ul>
+          <ul className="name__list">
             {this.context.people.map((person, i) => {
               return <li key={i}>{person}</li>;
             })}
           </ul>
         </fieldset>
+        {this.context.feedback === '' ? (
+          <div className="cats_and_dogs">{this.renderCatsAndDogs()}</div>
+        ) : (
+          <h3>{this.context.feedback}</h3>
+        )}
       </div>
     );
   }

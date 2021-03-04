@@ -7,9 +7,11 @@ import './App.css';
 class App extends React.Component {
   render() {
     return (
-      <div className="App__main">
+      <div className="App">
         <Nav />
-        <Routes />
+        <section className="App__main">
+          <Routes />
+        </section>
       </div>
     );
   }

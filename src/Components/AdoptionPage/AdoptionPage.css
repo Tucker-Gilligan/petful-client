@@ -1,5 +1,73 @@
 .cat__dog {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
-  border: solid 1px;
+
+  /* margin: 1rem; */
+  padding: 1rem;
+}
+
+.adoption__page {
+  font-size: 120%;
+}
+
+.dog__container {
+  padding: 1rem;
+  border-bottom: solid 1px;
+}
+
+.cat__container {
+  padding: 1rem;
+}
+
+.bg-img {
+  width: 100%;
+}
+.name__field {
+  border: none;
+  border-bottom: solid 1px;
+  font-size: 120%;
+  display: flex;
+  flex-direction: column;
+}
+
+.user__name__label {
+  font-size: 120%;
+}
+
+.people__queue__form {
+  display: flex;
+  flex-direction: column;
+}
+.user__name {
+  padding: 0.5rem;
+  font-size: 120%;
+}
+
+.submit__button {
+  padding: 0.2rem;
+  font-size: 100%;
+}
+
+@media all and (min-width: 900px) {
+  .cat__dog {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .bg-img {
+    width: 50%;
+  }
+
+  .dog__container {
+    border: none;
+  }
+
+  .adoption__page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name__field {
+    /* border-right: solid 0.1rem; */
+  }
 }
