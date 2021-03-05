@@ -37,6 +37,7 @@ class AdoptionPage extends React.Component {
       'Barb',
     ];
     let randomPerson = people[Math.floor(Math.random() * people.length)];
+
     ApiService.addPerson(this.state.name).then(() => {
       this.name = this.state.name;
       this.context.setAllPeople([...this.context.people, this.state.name]);
@@ -50,9 +51,14 @@ class AdoptionPage extends React.Component {
         } else {
           this.context.adoptDog();
         }
-        ApiService.addPerson(randomPerson).then(() => {
-          this.context.setAllPeople([...this.context.people]);
-        });
+        if (this.context.cats.length !== 0 || this.context.dogs.length !== 0) {
+          ApiService.addPerson(randomPerson).then(() => {
+            this.context.setAllPeople([...this.context.people]);
+          });
+        } else {
+          this.clearInterval(this.AdoptInterval);
+          this.context.setFeedback('no more animals in the shelter');
+        }
       }, 5000);
     });
   };
