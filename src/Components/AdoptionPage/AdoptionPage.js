@@ -7,6 +7,7 @@ class AdoptionPage extends React.Component {
   static contextType = PetContext;
   state = {
     name: '',
+    isAdding: true,
   };
 
   componentDidMount() {
@@ -24,6 +25,18 @@ class AdoptionPage extends React.Component {
   // This function calls addPerson function (post request) and adds name to list of people array
   handleAddPerson = e => {
     e.preventDefault();
+    this.setState({ isAdding: false });
+    let people = [
+      'Bubbles',
+      'Mr.Lahey',
+      'Randy',
+      'Cyrus',
+      'Ricky',
+      'Julian',
+      'J. Roc',
+      'Barb',
+    ];
+    let randomPerson = people[Math.floor(Math.random() * people.length)];
     ApiService.addPerson(this.state.name).then(() => {
       this.name = this.state.name;
       this.context.setAllPeople([...this.context.people, this.state.name]);
@@ -37,10 +50,10 @@ class AdoptionPage extends React.Component {
         } else {
           this.context.adoptDog();
         }
-        ApiService.addPerson('Bobby').then(() => {
-          this.context.setAllPeople([...this.context.people, 'Bubbles']);
+        ApiService.addPerson(randomPerson).then(() => {
+          this.context.setAllPeople([...this.context.people, randomPerson]);
         });
-      }, 5000);
+      }, 1000);
     });
   };
 
@@ -56,29 +69,37 @@ class AdoptionPage extends React.Component {
   renderCatsAndDogs() {
     return (
       <div className="cat__dog">
-        <div className="dog__container">
-          {this.renderPet(this.context.dogs[0], 'Dog')}
+        {this.context.dogs.length !== 0 ? (
+          <div className="dog__container">
+            {this.renderPet(this.context.dogs[0], 'Dog')}
 
-          <button
-            className="petful__button"
-            onClick={this.handleAdoptDogButton}
-            type="button"
-            disabled={this.context.people[0] !== this.name}
-          >
-            ADOPT DOG!
-          </button>
-        </div>
-        <div className="cat__container">
-          {this.renderPet(this.context.cats[0], 'Cat')}
-          <button
-            className="petful__button"
-            onClick={this.handleAdoptCatButton}
-            type="button"
-            disabled={this.context.people[0] !== this.name}
-          >
-            ADOPT CAT!
-          </button>
-        </div>
+            <button
+              className="petful__button"
+              onClick={this.handleAdoptDogButton}
+              type="button"
+              disabled={this.context.people[0] !== this.name}
+            >
+              ADOPT DOG!
+            </button>
+          </div>
+        ) : (
+          <p>no more dogs in the shelter</p>
+        )}
+        {this.context.cats.length !== 0 ? (
+          <div className="cat__container">
+            {this.renderPet(this.context.cats[0], 'Cat')}
+            <button
+              className="petful__button"
+              onClick={this.handleAdoptCatButton}
+              type="button"
+              disabled={this.context.people[0] !== this.name}
+            >
+              ADOPT CAT!
+            </button>
+          </div>
+        ) : (
+          <p>no more cats in the shelter</p>
+        )}
       </div>
     );
   }
@@ -119,8 +140,13 @@ class AdoptionPage extends React.Component {
 
     this.context.adoptDog();
     setTimeout(() => {
-      this.context.setFeedback('');
-    }, 5000);
+      if (this.context.dogs.length !== 0 || this.context.cats.length !== 0) {
+        this.setState({ isAdding: true });
+        this.context.setFeedback('');
+      } else {
+        this.context.setFeedback('there are no more animals in the shelter');
+      }
+    }, 1000);
   };
 
   // Handles message and button when user clicks to adopt a cat
@@ -133,12 +159,13 @@ class AdoptionPage extends React.Component {
     );
 
     setTimeout(() => {
-      this.context.cats && this.context.dogs !== []
-        ? this.context.setFeedback('')
-        : this.context.setFeedback(
-            'looks like there are no more pets to adopt'
-          );
-    }, 5000);
+      if (this.context.dogs.length !== 0 || this.context.cats.length !== 0) {
+        this.setState({ isAdding: true });
+        this.context.setFeedback('');
+      } else {
+        this.context.setFeedback('there are no more animals in the shelter');
+      }
+    }, 1000);
   };
 
   render() {
@@ -146,23 +173,30 @@ class AdoptionPage extends React.Component {
     return (
       <div className="adoption__page">
         <fieldset className="name__field">
-          <h3>Add Name to List: </h3>
-          <form onSubmit={this.handleAddPerson} className="people__queue__form">
-            <label htmlFor="user__name" className="user__name__label">
-              Name:{' '}
-            </label>
-            <input
-              name="user__name"
-              className="user__name"
-              value={this.state.name}
-              onChange={this.handleOnChange}
-              placeholder="Enter your name"
-              required
-            ></input>
-            <button type="submit" className="submit__button">
-              Add Name
-            </button>
-          </form>
+          {this.state.isAdding === true && (
+            <>
+              <h3>Add Name to List: </h3>
+              <form
+                onSubmit={this.handleAddPerson}
+                className="people__queue__form"
+              >
+                <label htmlFor="user__name" className="user__name__label">
+                  Name:{' '}
+                </label>
+                <input
+                  name="user__name"
+                  className="user__name"
+                  value={this.state.name}
+                  onChange={this.handleOnChange}
+                  placeholder="Enter your name"
+                  required
+                />
+                <button type="submit" className="submit__button">
+                  Add Name
+                </button>
+              </form>
+            </>
+          )}
           <ul className="name__list">
             {this.context.people.map((person, i) => {
               return <li key={i}>{person}</li>;

@@ -11,15 +11,6 @@
   font-size: 120%;
 }
 
-.dog__container {
-  padding: 1rem;
-  border-bottom: solid 1px;
-}
-
-.cat__container {
-  padding: 1rem;
-}
-
 .bg-img {
   width: 100%;
 }
@@ -60,6 +51,17 @@
     justify-content: space-evenly;
   }
   .bg-img {
+    width: 50%;
+  }
+
+  .dog__container {
+    padding: 1rem;
+    border-bottom: solid 1px;
+    width: 50%;
+  }
+
+  .cat__container {
+    padding: 1rem;
     width: 50%;
   }
 
