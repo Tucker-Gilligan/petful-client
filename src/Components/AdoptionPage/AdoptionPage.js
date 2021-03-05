@@ -51,9 +51,9 @@ class AdoptionPage extends React.Component {
           this.context.adoptDog();
         }
         ApiService.addPerson(randomPerson).then(() => {
-          this.context.setAllPeople([...this.context.people, randomPerson]);
+          this.context.setAllPeople([...this.context.people]);
         });
-      }, 1000);
+      }, 5000);
     });
   };
 
@@ -146,7 +146,7 @@ class AdoptionPage extends React.Component {
       } else {
         this.context.setFeedback('there are no more animals in the shelter');
       }
-    }, 1000);
+    }, 5000);
   };
 
   // Handles message and button when user clicks to adopt a cat
@@ -165,7 +165,7 @@ class AdoptionPage extends React.Component {
       } else {
         this.context.setFeedback('there are no more animals in the shelter');
       }
-    }, 1000);
+    }, 5000);
   };
 
   render() {
