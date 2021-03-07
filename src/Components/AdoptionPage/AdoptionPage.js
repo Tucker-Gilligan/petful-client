@@ -22,10 +22,7 @@ class AdoptionPage extends React.Component {
     }
   };
 
-  // This function calls addPerson function (post request) and adds name to list of people array
-  handleAddPerson = e => {
-    e.preventDefault();
-    this.setState({ isAdding: false });
+  randomPerson = () => {
     let people = [
       'Bubbles',
       'Mr.Lahey',
@@ -37,7 +34,13 @@ class AdoptionPage extends React.Component {
       'Barb',
     ];
     let randomPerson = people[Math.floor(Math.random() * people.length)];
+    return randomPerson;
+  };
 
+  // This function calls addPerson function (post request) and adds name to list of people array
+  handleAddPerson = e => {
+    e.preventDefault();
+    this.setState({ isAdding: false });
     ApiService.addPerson(this.state.name).then(() => {
       this.name = this.state.name;
       this.context.setAllPeople([...this.context.people, this.state.name]);
@@ -52,14 +55,15 @@ class AdoptionPage extends React.Component {
           this.context.adoptDog();
         }
         if (this.context.cats.length !== 0 || this.context.dogs.length !== 0) {
-          ApiService.addPerson(randomPerson).then(() => {
+          ApiService.addPerson(this.randomPerson()).then(() => {
             this.context.setAllPeople([...this.context.people]);
           });
         } else {
           this.clearInterval(this.AdoptInterval);
           this.context.setFeedback('no more animals in the shelter');
+          this.setState({ isAdding: false });
         }
-      }, 5000);
+      }, 1000);
     });
   };
 
@@ -152,7 +156,7 @@ class AdoptionPage extends React.Component {
       } else {
         this.context.setFeedback('there are no more animals in the shelter');
       }
-    }, 5000);
+    }, 1000);
   };
 
   // Handles message and button when user clicks to adopt a cat
@@ -171,7 +175,7 @@ class AdoptionPage extends React.Component {
       } else {
         this.context.setFeedback('there are no more animals in the shelter');
       }
-    }, 5000);
+    }, 1000);
   };
 
   render() {
